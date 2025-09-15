@@ -5,6 +5,12 @@ app = Flask(__name__)
 @app.route("/")
 
 def index():
-    return '<h1 style="color:red">您好!Flaks</h1>'
+    return '<h1 style="color:red">您好!Flask</h1>'
+
+@app.route("/name")
+
+def name():
+    return'<h1>hello! Robert</h1>'
+
 
 if __name__ == "__main__":app.run(debug=True)
