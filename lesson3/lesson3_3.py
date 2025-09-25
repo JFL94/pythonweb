@@ -35,8 +35,11 @@ def download_youbike_data():
         # 這是所有 requests 例外的父類別，可以用來捕捉其他未預期的錯誤
         print(f"發生未預期的請求錯誤: {err}")
     else:
-        print(f"沒有出錯:\n{data}")
+        return data
+
+def main():
+   data = download_youbike_data()
+   print(data)
 
 if __name__ == "__main__":
-    download_youbike_data()
-
+    main()
