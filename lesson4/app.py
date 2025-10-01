@@ -3,8 +3,8 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+def index():
+    return "<h1>Hello, JFL!</h1>"
 
 def main():
     """啟動應用(教學用：啟用 debug 模式)"""
