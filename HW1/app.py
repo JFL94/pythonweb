@@ -14,6 +14,10 @@ def regression():
 def knn():
     return render_template("knn.html")
 
+@app.route("/decision_tree")
+def decision_tree():
+    return render_template("decision_tree.html")
+
 @app.route("/lesson6_1")
 def lesson6_1():
     page_tile = "我的首頁Robert"
