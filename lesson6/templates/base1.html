@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {# 這裏放的是註解 #}
-    <title>{{ title }}</title>
+    <title>{% block title %}XXX{% endblock %}</title>
     <style>
         body {
             font-family: sans-serif;
@@ -38,15 +38,15 @@
 <body>
 
     <header>
-        <h1>我的網站</h1>
+        {% block header %}
+        XXX
+        {% endblock %}
     </header>
 
     <div class="content">
-        <ul>
-            {% for user in user_list %}
-            <li>{{ user["name"] }}</li>
-            {% endfor %}
-        </ul>
+        {% block content %}
+        XXX
+        {% endblock %}
     </div>
 
     <footer>
