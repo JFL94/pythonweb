@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}?v=1">
     <!-- 已移除內嵌 <style>，相關導覽列樣式已移至 static/css/index.css -->
 </head>
-
 <body>
     <!-- 導覽列 -->
     <nav class="navbar">
@@ -17,13 +15,13 @@
             <a class="navbar-brand" href="#">職能發展學院</a>
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="{{ url_for('index') }}" class="active">首頁</a>
+                    <a href="#" class="active">首頁1</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ url_for('machine') }}">機器學習</a>
+                    <a href="#">課程內容</a>
                 </li>
                 <li class="nav-item">
-                    <a href="https://github.com/JFL94/pythonweb" target="_blank">專案源碼</a>
+                    <a href="#">關於我們</a>
                 </li>
             </ul>
             <!-- 手機版導覽切換按鈕 -->
@@ -52,5 +50,4 @@
     <!-- 載入手機版導覽的行為腳本 -->
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </body>
-
 </html>
