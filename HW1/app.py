@@ -16,7 +16,12 @@ def knn():
 
 @app.route("/decision_tree")
 def decision_tree():
-    return render_template("decision_tree.html")
+    tree_info = {
+        "algorithm": "決策樹分類器",
+        "applications": ["垃圾郵件分類", "客戶流失預測", "疾病診斷"],
+        "pros": ["容易理解", "不需要特徵縮放", "可視化清晰"]
+    }
+    return render_template("decision_tree.html", info=tree_info)
 
 @app.route("/lesson6_1")
 def lesson6_1():

@@ -1,5 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>決策樹</h1>
+<h1>{{ info.algorithm }}</h1>
 <p>決策樹是一個利用像樹一樣的圖形或決策模型的決策支持工具，包括隨機事件結果，資源代價和實用性。它是一個算法顯示的方法。</p>
+
+<h3>主要應用：</h3>
+<ul>
+    {% for app in info.applications %}
+    <li>{{ app }}</li>
+    {% endfor %}
+</ul>
+
+<h3>優點：</h3>
+<ul>
+    {% for pro in info.pros %}
+    <li>{{ pro }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
