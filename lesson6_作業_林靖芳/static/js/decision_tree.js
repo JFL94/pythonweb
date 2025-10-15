@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const ctx = canvas.getContext('2d');
 
     // 設定基本樣式
-    ctx.font = '14px Arial';
+    ctx.font = '8px Arial';
     ctx.textAlign = 'center';
 
     // 繪製決策樹節點
