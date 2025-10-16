@@ -46,7 +46,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 2rem;
     overflow: hidden;
-    transition: transform 1s ease, box-shadow 1ms ease;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 
 .algorithm-card:hover {
