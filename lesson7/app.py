@@ -14,9 +14,9 @@ def regression():
 def knn():
     return render_template("knn.html")
 
-@app.route("/decision_tree")
-def decision_tree():    
-    return render_template('decision_tree.html')
+@app.route("/test")
+def test():
+    return render_template("test.html")
 
 def main():
     """啟動應用（教學用：啟用 debug 模式）"""
