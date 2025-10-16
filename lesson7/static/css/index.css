@@ -106,10 +106,48 @@
     line-height: 1.8rem;
 }
 
+
 .algorithm-card .card-body ul li {
     margin-bottom: 0.5rem;
 }
 
+/*Pros and Cons 優缺點*/
+.pros-cons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin: 1rem 0;
+}
+
+/* 群組選取(優缺點) */
+.pros,
+.cons {
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.pros {
+    background-color: #e4eec7;
+    border-left: 4px solid #3ad326;
+}
+
+.cons {
+    background-color: #f3cccc;
+    border-left: 4px solid #d33126;
+}
+
+.pros strong,
+.cons strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.pros ul,
+.cons ul {
+    padding-left: 1.5rem;
+    list-style-type: disc;
+}
 
 
 @media(max-width:768px) {
@@ -127,5 +165,10 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+
+    .pros-cons {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 }
