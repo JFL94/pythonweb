@@ -14,6 +14,15 @@ def regression():
 def knn():
     return render_template("knn.html")
 
+@app.route("/decision_tree")
+def decision_tree():
+    tree_info = {
+        'algorithm': "決策樹分類器",
+        'applications': ["垃圾郵件分類", "客戶流失預測", "疾病診斷"],
+        'pros': ["容易理解", "不需要特徵縮放", "可視化清晰"]
+    }
+    return render_template('decision_tree.html', tree_info=tree_info)
+
 @app.route("/lesson6_1")
 def lesson6_1():
     page_tile = "我的首頁Robert"

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}決策樹分類{% endblock %}
+
+{% block head %}
+{{super()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1>{{ tree_info.algorithm }}</h1>
+<p>
+    決策樹是一種直觀且常用的監督式學習方法，用於分類與回歸問題。它透過對特徵逐層分割，形成類似樹狀的規則結構，根節點代表整體資料，分支代表條件判斷，葉節點則給出最終類別或預測值。決策樹易於解釋與視覺化，但需注意過度擬合、特徵選擇與剪枝等實務議題。
+</p>
+
+
+<h5>應用領域</h5>
+
+<div>
+    <ul>
+        {% for app in tree_info.applications %}
+        <li> {{ app }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<h5>主要優點</h5>
+
+<li>
+    <ul>
+        {% for pro in tree_info.pros %}
+        <li>{{ pro }}</li>
+        {% endfor %}
+    </ul>
+</li>
+
+{% endblock %}
