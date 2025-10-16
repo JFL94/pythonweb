@@ -68,6 +68,49 @@
     margin: 0;
 }
 
+.algorithm-card .badge {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
+
+.algorithm-card .card-body {
+    padding: 2rem;
+
+}
+
+.algorithm-card .card-body h4 {
+    color: #061a7e;
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid #667eee;
+    padding-bottom: 0.5rem;
+
+}
+
+.algorithm-card .card-body h4:first-child {
+    margin-top: 0;
+}
+
+.algorithm-card .card-body p {
+    line-height: 1.8rem;
+    color: #1b1b1b;
+    margin-bottom: 1rem;
+}
+
+.algorithm-card .card-body ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+    line-height: 1.8rem;
+}
+
+.algorithm-card .card-body ul li {
+    margin-bottom: 0.5rem;
+}
+
+
 
 @media(max-width:768px) {
 
