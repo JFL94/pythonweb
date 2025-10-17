@@ -1,26 +1,25 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>顯示/隱藏答案考題</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-</head>
+{% block title %}作業2{% endblock %}
 
-<body>
+{% block head %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/homework2.css') }}">
+{% endblock %}
 
-    <div class="qa-container">
-        <h2>問題：在 Flask 框架中，通常將 CSS 和 JavaScript 等靜態檔案放在哪個資料夾？</h2>
+{% block content %}
+<div class="qa-container">
+    <h2>問題：在 Flask 框架中，通常將 CSS 和 JavaScript 等靜態檔案放在哪個資料夾？</h2>
 
-        <button class="toggle-button">顯示答案</button>
+    <button class="toggle-button">顯示答案</button>
 
-        <div class="answer-content">
-            <p>答案是 <strong>static</strong> 資料夾。</p>
-        </div>
+    <div class="answer-content">
+        <p>答案是 <strong>static</strong> 資料夾。</p>
     </div>
+</div>
+{% endblock %}
 
-    <script src="../static/js/script.js"></script>
-</body>
 
-</html>
+{% block code %}
+<script src="{{ url_for('static', filename='js/homework2.js') }}"></script>
+{% endblock %}
