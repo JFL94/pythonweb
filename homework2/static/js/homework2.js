@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // 檢查元素是否存在
     if (!toggleButton || !answerContent) {
         console.warn('無法找到必要的 DOM 元素。');
-        return;    }
+        return;
+    }
 
     // 綁定事件
     toggleButton.addEventListener('click', function () {
