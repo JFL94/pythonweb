@@ -8,7 +8,20 @@
 {% endblock %}
 
 {% block content %}
-<h1>線性迴歸</h1>
+<div class="regression-container">
+    <div class="page-header">
+        <h1>線性迴歸 (Linear Regression)</h1>
+        <p class="subtitle">使用加州房價資料集進行房價預測</p>
+    </div>
+
+    <!-- 資料集說明 -->
+    <div class="info-card">
+        <h3>關於資料集</h3>
+        <p><strong>加州房價資料集（California Housing Dataset）</strong>取自 1990 年加州人口普查資料，包含 200 個社區的房屋資訊。</p>
+        <p>本展示使用<strong>平均房間數</strong>來預測<strong>房價</strong>，讓你可以清楚看到線性迴歸如何找出特徵與目標值之間的線性關係。</p>
+        <p class="highlight">💡 <strong>互動提示</strong>：在下方輸入房間數，或點選圖表上的資料點，即可看到預測房價！</p>
+    </div>
+</div>
 {% endblock %}
 
 {% block code %}
