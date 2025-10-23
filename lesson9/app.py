@@ -6,10 +6,9 @@ from sklearn.metrics import r2_score, mean_squared_error
 import numpy as np
 
 app = Flask(__name__)
-# 讓app輸出json時，繁體中文不會出現亂碼
-app.config['JSON_AS_ASCII'] = False
-# 讓app輸出json時，繁體中文不會出現亂碼,支援新的flask版本
-app.config['JSON_UTF8'] = True
+
+# 自定義JSON序列化設定
+app.json.ensure_ascii = False
 
 @app.route("/")
 def index():
