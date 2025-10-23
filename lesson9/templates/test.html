@@ -15,8 +15,12 @@
     <script src="{{url_for('static',filename='vendor/chart.js/chart.umd.js')}}"></script>
 
     <script>
+
+        debugger;   // 設定中斷點
         const ctx = document.getElementById('myChart');
         console.log("Hello!js!")
+        debugger;   // 設定中斷點
+
         new Chart(ctx, {
             type: 'bar',
             data: {
