@@ -4,45 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>範例1</title>
+    <title>Document</title>
 </head>
 
 <body>
-    <div>
-        <canvas id="myChart" width="800" height="500"></canvas>
-    </div>
-
-    <script src="{{url_for('static',filename='vendor/chart.js/chart.umd.js')}}"></script>
-
     <script>
-
-        debugger;   // 設定中斷點
-        const ctx = document.getElementById('myChart');
-        console.log("Hello!js!")
-        debugger;   // 設定中斷點
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: false,  //完全固定像素（不隨視窗改變），設為 false 並設定 canvas 的 width/height。
-                maintainAspectRatio: false, // 依容器大小繪製
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        console.log("1. 店員：A客人您好，幫您點餐。");
+        setTimeout(function(){  //setTimeout 非同步處理
+            console.log("3.(過了3秒)咖啡機:A客人的咖啡好了!呼叫請響了")
+        },3000)
+        console.log("2.店員:(不等咖啡機)B客人您好，幫您點餐。")
     </script>
-
 </body>
 
 </html>
