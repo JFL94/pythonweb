@@ -9,14 +9,14 @@
 
 <body>
     <div>
-        <canvas id="myChart"></canvas>
+        <canvas id="myChart" width="800" height="500"></canvas>
     </div>
 
     <script src="{{url_for('static',filename='vendor/chart.js/chart.umd.js')}}"></script>
 
     <script>
         const ctx = document.getElementById('myChart');
-
+        console.log("Hello!js!")
         new Chart(ctx, {
             type: 'bar',
             data: {
@@ -28,6 +28,8 @@
                 }]
             },
             options: {
+                responsive: false,  //完全固定像素（不隨視窗改變），設為 false 並設定 canvas 的 width/height。
+                maintainAspectRatio: false, // 依容器大小繪製
                 scales: {
                     y: {
                         beginAtZero: true
