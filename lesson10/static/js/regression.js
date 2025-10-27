@@ -115,7 +115,7 @@ function renderChart(data) {
                     const datasetIndex = element.datasetIndex
                     const index = element.index
                     const dataset = chart.data.datasets[datasetIndex]
-                    console.table(dataset)
+                    // console.table(dataset)
 
                     if (datasetIndex === 0 || datasetIndex === 1) { //訓練或測試資料
                         const point = dataset.data[index]
@@ -193,8 +193,16 @@ function renderChart(data) {
 
 }
 
-function predictPrice(rooms) {
-    console.log('rooms', rooms)
+async function predictPrice(rooms) {
+    // console.log('rooms', rooms)
+    if (isNaN(rooms) || rooms < 1 || rooms > 15) {
+        alert('請輸入有效的房間數(1~15間)')
+        return;
+    }
+
+    const response = await fetch(`/api/regression/predict?rooms=${rooms}`)
+    console.table(response)
+
 }
 
 
