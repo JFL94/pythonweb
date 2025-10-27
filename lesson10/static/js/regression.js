@@ -119,8 +119,17 @@ function renderChart(data) {
                 tooltip: {
                     callbacks: {
                         label: function (context) {
-                            console.log(context)
-                            return 'abc'
+
+                            const datasetLabel = context.dataset.label || '';
+                            const xValue = context.parsed.x.toFixed(2);
+                            const yValue = context.parsed.y.toFixed(2);
+                            return `${datasetLabel}: (平均房間數:${xValue} , 房價：${yValue})`
+                        },
+                        afterLabel: function (context) {
+                            if (context.datasetIndex === 0 || context.datasetIndex === 1) {
+                                return '點擊可預測此資料點';
+                            }
+                            return '';
                         }
                     }
                 },
