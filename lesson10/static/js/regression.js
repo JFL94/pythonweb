@@ -47,7 +47,7 @@ function renderChart(data) {
             x: xvalue,
             y: data.data.train.y[index]
         }
-    )//return只有一行時要省略"{}"block符號
+    )//return只有一行時function省略"{}"block符號
     );
 
     //準備測試資料集
@@ -57,7 +57,7 @@ function renderChart(data) {
             x: xvalue,
             y: data.data.test.y[index]
         }
-    )//return只有一行時要省略"{}"block符號
+    )//return只有一行時function省略"{}"block符號
     );
 
     //準備迴歸線資料
@@ -67,7 +67,7 @@ function renderChart(data) {
             x: xvalue,
             y: data.data.regression_line.y[index]
         }
-    )//return只有一行時要省略"{}"block符號
+    )//return只有一行時function省略"{}"block符號
     );
 
     //建立圖表
@@ -106,6 +106,29 @@ function renderChart(data) {
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: '平均房間數 vs 房價',
+                    font: {
+                        size: 18,
+                        weight: 'bold',
+                    },
+                    padding: 20
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            console.log(context)
+                            return 'abc'
+                        }
+                    }
+                },
+            },
+            animation: {
+                duration: 1000,
+                easing: 'easeInOutQuart'
+            },
             scales: {
                 x: {
                     title: {
