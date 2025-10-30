@@ -96,7 +96,6 @@ def regression_data():
                 "info": "此資料集取自 1990 年加州人口普查資料"
             }
         }
-
         return jsonify(response)
     except Exception as e:
         return jsonify(

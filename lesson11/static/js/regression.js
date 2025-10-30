@@ -38,7 +38,7 @@ async function loadRegressionData() {   //3.載入資料
         // 5.繪制圖表
         renderChart(data)
 
-        //6.更新評估指標
+        // 6.更新評估指標
         updateMetrics(data.metrics)
 
         // 7.更新模型資訊
@@ -216,7 +216,7 @@ async function predictPrice(rooms) {
     }
     try {
         const response = await fetch(`/regression/api/predict?rooms=${rooms}`)
-        console.table(response)
+        // console.table(response)
         const data = await response.json()
         if (data.success) {
             //更新預測結果
