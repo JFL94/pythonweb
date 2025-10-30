@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             predictPrice(rooms)
         }
     })
+
 });
 
 async function loadRegressionData() {   //3.載入資料
@@ -39,6 +40,9 @@ async function loadRegressionData() {   //3.載入資料
 
         //6.更新評估指標
         updateMetrics(data.metrics)
+
+        // 7.更新模型資訊
+        updateModelInfo(data.description)
 
     } catch (error) {
         showError(error.message);       //4-2功能:showError展示error
@@ -268,6 +272,15 @@ function updateMetrics(metrics) {
         r2Element.style.color = '#f44336';
     }
 
+}
+
+function updateModelInfo(description) {
+    console.table(description)
+    document.getElementById('dataset-name').textContent = description.dataset
+    document.getElementById('total-samples').textContent = description.samples
+    document.getElementById('train-size').textContent = description.train_size
+    document.getElementById('test-size').textContent = description.test_size
+    document.getElementById('target-name').textContent = description.target_name
 }
 
 function showLoading(show) {
