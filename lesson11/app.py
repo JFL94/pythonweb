@@ -123,48 +123,53 @@ def regression_data():
 
 @app.route("/api/regression/predict")
 def regression_predict():
-    """線性回歸預測API - 根據房間數預測房價"""
- 
-    # 取得使用者輸入的房間，並轉換為 float
-    try:
-        rooms = float(request.args.get('rooms', 5))
-    except ValueError:
-        return jsonify({"success": False, "error": "房間數必須為數字"}), 400
+    """線性回歸預測API - 根據房間數預測房價""" 
     
-    #載入資料並訓練模型
-    housing = fetch_california_housing()
-    sample_size = 200 #資料筆數
-    feature_idx = 2 #維度
-    X = housing.data[:sample_size,feature_idx].reshape(-1,1) #(幾筆資料，幾個維度)#特徵
-    y = housing.target[:sample_size]*10 #房價(萬美金)#標籤
-    # print(X,y)
+    try:
+        # 取得使用者輸入的房間，並轉換為 float
+        rooms = float(request.args.get('rooms', 5))
+    
+        #載入資料並訓練模型
+        housing = fetch_california_housing()
+        sample_size = 200 #資料筆數
+        feature_idx = 2 #維度
+        X = housing.data[:sample_size,feature_idx].reshape(-1,1) #(幾筆資料，幾個維度)#特徵
+        y = housing.target[:sample_size]*10 #房價(萬美金)#標籤
+        # print(X,y)
 
-     # 訓練模型
-    model = LinearRegression()
-    model.fit(X, y)
+        # 訓練模型
+        model = LinearRegression()
+        model.fit(X, y)
 
-    # 預測
-    X_input = np.array([[rooms]])
-    predicted_price = model.predict(X_input)[0]
-    print(predicted_price)
+        # 預測
+        X_input = np.array([[rooms]])
+        predicted_price = model.predict(X_input)[0]
+        print(predicted_price)
 
-    response = {
-         "success": True,
-        "input": {
-            "rooms": rooms,
-            "unit" : "間"
-        },
-        "prediction": {
-            "price": round(predicted_price, 2),
-            "unit": "萬美元"
-        },
-        "formula":{
-            "coefficient": round(model.coef_[0],2),
-            "intercept": round(model.intercept_, 2),
-            "equation": f"房價={round(model.coef_[0],2)} x 房間數 + {round(model.intercept_, 2)}"
+        response = {
+            "success": True,
+            "input": {
+                "rooms": rooms,
+                "unit" : "間"
+            },
+            "prediction": {
+                "price": round(predicted_price, 2),
+                "unit": "萬美元"
+            },
+            "formula":{
+                "coefficient": round(model.coef_[0],2),
+                "intercept": round(model.intercept_, 2),
+                "equation": f"房價={round(model.coef_[0],2)} x 房間數 + {round(model.intercept_, 2)}"
+            }
         }
-    }
-    return jsonify(response)
+        return jsonify(response)
+    except Exception as error:
+        return jsonify(
+            {
+                "success": False,
+                "error": str(e)
+            }, 500
+        )
 
 def main():
     """啟動應用（教學用：啟用 debug 模式）"""
