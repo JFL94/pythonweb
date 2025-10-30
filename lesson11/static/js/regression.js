@@ -4,6 +4,20 @@ let modelData = null; //儲存模型資料
 // 1.頁面戴入完成後才執行
 document.addEventListener('DOMContentLoaded', function () {
     loadRegressionData(); //2.載入資料函式(進入點)
+
+    //綁定預測按鈕事件
+    document.getElementById('predict-btn').addEventListener('click', function () {
+        const rooms = parseFloat(document.getElementById('rooms-input').value)
+        predictPrice(rooms)
+    })
+
+    //綁定Enter鍵觸發預測
+    document.getElementById('rooms-input').addEventListener('keypress', function (e) {
+        if (e.key === "Enter") {
+            const rooms = parseFloat(this.value)
+            predictPrice(rooms)
+        }
+    })
 });
 
 async function loadRegressionData() {   //3.載入資料
