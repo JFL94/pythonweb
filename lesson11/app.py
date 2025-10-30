@@ -1,4 +1,4 @@
-from flask import Flask,render_template, jsonify, Response
+from flask import Flask,render_template, jsonify, Response,request
 from sklearn.datasets import fetch_california_housing
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
@@ -124,6 +124,18 @@ def regression_data():
 @app.route("/api/regression/predict")
 def regression_predict():
     """線性回歸預測API - 根據房間數預測房價"""
+ 
+    # 取得使用者輸入的房間
+    rooms = (request.args.get('rooms',5))
+    
+    #載入資料並訓練模型
+    housing = fetch_california_housing()
+    sample_size = 200 #資料筆數
+    feature_idx = 2 #維度
+    X = housing.data[:sample_size,feature_idx].reshape(-1,1).shape #(幾筆資料，幾個維度)#特徵
+    y = housing.target[:sample_size]*10 #房價(萬美金)#標籤
+    print(X,y)
+
     response = {
         "success":True,
         "prediction":{

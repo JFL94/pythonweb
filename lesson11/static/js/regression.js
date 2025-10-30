@@ -1,13 +1,13 @@
 let chart = null; //圖表實體
 let modelData = null; //儲存模型資料
 
-// 頁面戴入完成後才執行
+// 1.頁面戴入完成後才執行
 document.addEventListener('DOMContentLoaded', function () {
-    loadRegressionData();
+    loadRegressionData(); //2.載入資料函式(進入點)
 });
 
-async function loadRegressionData() {
-    showLoading(true);
+async function loadRegressionData() {   //3.載入資料
+    showLoading(true);  //4-1.功能:showLoading展示資料
     try {
         const response = await fetch('/api/regression/data')
         if (!response.ok) {
@@ -20,11 +20,11 @@ async function loadRegressionData() {
         }
         modelData = data
 
-        // 繪制圖表
+        // 5.繪制圖表
         renderChart(data)
 
     } catch (error) {
-        showError(error.message);
+        showError(error.message);       //4-2功能:showError展示error
     } finally {
         showLoading(false);
     }
@@ -32,7 +32,7 @@ async function loadRegressionData() {
 };
 
 
-function renderChart(data) {
+function renderChart(data) {        // 5.繪制圖表
     const ctx = document.getElementById('regressionChart').getContext('2d')
 
     // 如果圖表已經存在,先銷毀
@@ -195,12 +195,12 @@ function renderChart(data) {
 
 async function predictPrice(rooms) {
     // console.log('rooms', rooms)
-    if (isNaN(rooms) || rooms < 1 || rooms > 15) {
+    if (isNaN(rooms) || rooms < 1 || rooms > 15) {  //isNaN是否為數字
         alert('請輸入有效的房間數(1~15間)')
         return;
     }
 
-    const response = await fetch(`/api/regression/predict?rooms=${rooms}`)
+    const response = await fetch(`/api/regression/predict?rooms=${rooms}`) 
     console.table(response)
 
 }
