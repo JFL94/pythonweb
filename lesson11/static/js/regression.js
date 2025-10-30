@@ -199,9 +199,44 @@ async function predictPrice(rooms) {
         alert('請輸入有效的房間數(1~15間)')
         return;
     }
+    try {
+        const response = await fetch(`/api/regression/predict?rooms=${rooms}`)
+        console.table(response)
+        const data = await response.json()
+        if (data.success) {
+            //更新預測結果
+            document.getElementById('predicted-price').textContent = data.prediction.price;
+            //在圖表上顯示預測點
+            if (chart && modelData) {
+                addPredictionPoint(rooms, data.prediction.price)
+            }
+        } else {
+            showError('預測失敗:' + error.message)
+        }
+    }
+    catch (error) {
+        showError(data.error)
+    }
+}
 
-    const response = await fetch(`/api/regression/predict?rooms=${rooms}`) 
-    console.table(response)
+function addPredictionPoint(x, y) {
+    console.table(chart.data.datasets)
+    //移除之前的預測點
+    const existingDatasets = chart.data.datasets.filter(ds => ds.label !== '您的預測')
+    existingDatasets.push(
+        {
+            label: '您的預測',
+            data: [{ x: x, y: y }],
+            backgroundColor: '#ffc107',
+            borderColor: '#ff9800',
+            pointRadius: 12,
+            pointHoverRadius: 15,
+            pointStyle: 'star',
+            borderWidth: 3
+        }
+    )
+    chart.data.datasets = existingDatasets;
+    chart.update();
 
 }
 
