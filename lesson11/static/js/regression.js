@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function loadRegressionData() {   //3.載入資料
     showLoading(true);  //4-1.功能:showLoading展示資料
     try {
-        const response = await fetch('/api/regression/data')
+        const response = await fetch('/regression/api/data')
         if (!response.ok) {
             throw new Error(`網路出現問題:${response.statusText}`)
         }
@@ -215,7 +215,7 @@ async function predictPrice(rooms) {
         return;
     }
     try {
-        const response = await fetch(`/api/regression/predict?rooms=${rooms}`)
+        const response = await fetch(`/regression/api/predict?rooms=${rooms}`)
         console.table(response)
         const data = await response.json()
         if (data.success) {
