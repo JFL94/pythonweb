@@ -163,7 +163,7 @@ def regression_predict():
             }
         }
         return jsonify(response)
-    except Exception as error:
+    except Exception as e:
         return jsonify(
             {
                 "success": False,
