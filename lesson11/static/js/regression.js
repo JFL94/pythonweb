@@ -37,6 +37,9 @@ async function loadRegressionData() {   //3.載入資料
         // 5.繪制圖表
         renderChart(data)
 
+        //6.更新評估指標
+        updateMetrics(data.metrics)
+
     } catch (error) {
         showError(error.message);       //4-2功能:showError展示error
     } finally {
@@ -141,8 +144,7 @@ function renderChart(data) {        // 5.繪制圖表
                         predictPrice(rooms)
                     }
                 }
-            },
-            plugins: {
+            }, plugins: {
                 title: {
                     display: true,
                     text: '平均房間數 vs 房價',
@@ -151,8 +153,7 @@ function renderChart(data) {        // 5.繪制圖表
                         weight: 'bold',
                     },
                     padding: 20
-                },
-                tooltip: {
+                }, tooltip: {
                     callbacks: {
                         label: function (context) {
 
@@ -169,12 +170,10 @@ function renderChart(data) {        // 5.繪制圖表
                         }
                     }
                 },
-            },
-            animation: {
+            }, animation: {
                 duration: 1000,
                 easing: 'easeInOutQuart'
-            },
-            scales: {
+            }, scales: {
                 x: {
                     title: {
                         display: true,
@@ -183,8 +182,7 @@ function renderChart(data) {        // 5.繪制圖表
                             size: 14,
                             weight: 'bold'
                         },
-                    },
-                    grid: {
+                    }, grid: {
                         color: 'rgba(0,0,0,0.05)'
                     }
                 },
@@ -196,8 +194,7 @@ function renderChart(data) {        // 5.繪制圖表
                             size: 14,
                             weight: 'bold'
                         },
-                    },
-                    grid: {
+                    }, grid: {
                         color: 'rgba(0,0,0,0.05)'
                     }
                 }
@@ -254,6 +251,24 @@ function addPredictionPoint(x, y) {
 
 }
 
+function updateMetrics(metrics) {
+    document.getElementById('r2-score').textContent = metrics.r2_score;
+    document.getElementById('mse').textContent = metrics.mse;
+    document.getElementById('rmse').textContent = metrics.rmse;
+    document.getElementById('coefficient').textContent = metrics.coefficient;
+
+    //R² 分數顏色提示
+    const r2Element = document.getElementById('r2-score')
+    const r2Value = metrics.r2E_score;
+    if (r2Value > 0.7) {
+        r2Element.style.color = '#4caf50';
+    } else if (r2Value > 0.4) {
+        r2Element.style.color = '#ff9800';
+    } else {
+        r2Element.style.color = '#f44336';
+    }
+
+}
 
 function showLoading(show) {
     const loading = document.getElementById('loading');
