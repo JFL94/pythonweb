@@ -1,4 +1,4 @@
-## homework2 專案介紹
+## homework2: Flask 專案介紹
 
 這是一個使用 Python Flask 框架建立的基礎網頁應用程式。
 

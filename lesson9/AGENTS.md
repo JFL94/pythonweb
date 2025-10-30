@@ -5,7 +5,7 @@
 ### 專案結構
 
 ```
-/lesson9
+/lesson 9
 ├── app.py              # Flask 應用程式主檔案
 ├── static/             # 存放靜態檔案（CSS、JavaScript、圖片等）
 │   ├── css/           # CSS 樣式檔案
