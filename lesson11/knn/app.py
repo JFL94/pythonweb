@@ -1,6 +1,6 @@
 from flask import Blueprint,render_template,render_template, jsonify,request
 from sklearn.datasets import load_iris
-from sklearn.linear_model import KNeighborsClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 import numpy as np
