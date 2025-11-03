@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,render_template, jsonify,request
+from flask import Blueprint,render_template, jsonify,request
 from sklearn.datasets import fetch_california_housing
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split

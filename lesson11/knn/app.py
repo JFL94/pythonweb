@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template,render_template, jsonify,request
+from flask import Blueprint,render_template, jsonify,request
 from sklearn.datasets import load_iris
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
