@@ -1,6 +1,8 @@
 let currentK = 5;
 let modelData = null;
-
+let targetNames = null;
+let featureNames = null;
+let chart = null;
 
 // 1.頁面戴入完成後才執行
 document.addEventListener('DOMContentLoaded', function () {
@@ -16,12 +18,17 @@ async function loadKnnData() {
         const response = await fetch(url)
         const data = await response.json()
         if (data.success) {
-            modelData = data     
-            console.table(modelData)
+            modelData = data
+            // console.table(modelData)
+            targetNames = data.target_names
+            featureNames = data.feature_names
+
+            //繪製圖表
+            renderChart(modelData)
+
         } else {
-            showError(error.message)
+            showError(data.error)
         }
-        
     } catch (error) {
         showError(error.message);
     } finally {
@@ -30,7 +37,24 @@ async function loadKnnData() {
 
 }
 
-// 顯示|隱藏載入狀況
+//繪製圖表
+function renderChart(data) {
+    console.table(modelData)
+    console.log(chart)
+
+    // 取得canvas的context
+    const ctx = document.getElementById("knnChart").getContext('2d')
+
+    //如果圖表已經存在,先銷毀
+    if (chart) {
+        chart.destroy()
+    }
+
+    // 準備資料集 - 按類別分組
+
+}
+
+// 顯示|隱藏載入狀態
 function showLoading(show) {
     const loading = document.getElementById('loading');
     if (show) {
