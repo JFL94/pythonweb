@@ -3,7 +3,6 @@ from sklearn.datasets import load_iris #載入鳶尾花資料集
 from sklearn.model_selection import train_test_split # 分割訓練集跟測試集
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix #模型評估
-import numpy as np
 
 knn_bp = Blueprint(
     'knn',
