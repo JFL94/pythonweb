@@ -100,7 +100,7 @@ def knn_data():
                     "x": X_test[:,0].tolist(),
                     "y": X_test[:,1].tolist(),
                     "labels":y_test.tolist(),
-                    "predict":y_pred.tolist()
+                    "predictions":y_pred.tolist()
                 },
                 "metrics": {
                     "accuracy": round(accuracy, 4),

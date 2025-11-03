@@ -30,6 +30,7 @@ async function loadKnnData() {
 
             // 繪制圖表
             renderChart(data)
+
         } else {
             showError(data.error)
         }
@@ -38,15 +39,12 @@ async function loadKnnData() {
     } finally {
         showLoading(false)
     }
-
 }
 
 // 繪制圖表
-
 function renderChart(data) {
     //取得canvas的context
     const ctx = document.getElementById("knnChart").getContext('2d')
-
 
     //如果圖表已經存在,先銷毀
     if (chart) {
@@ -57,6 +55,7 @@ function renderChart(data) {
     const datasets = []
     const numClasses = data.target_names.length
 
+    // console.table(data.data.train)
 
     // 訓練資料(按類別)
     for (let classIdx = 0; classIdx < numClasses; classIdx++) {
@@ -65,7 +64,6 @@ function renderChart(data) {
             y: data.data.train.y[i],
             label: data.data.train.labels[i]
         })).filter(point => point.label == classIdx)
-
 
         if (trainDataForClass.length > 0) {
             datasets.push({
@@ -89,7 +87,7 @@ function renderChart(data) {
             x: x,
             y: data.data.test.y[i],
             label: data.data.test.labels[i],
-            prediction: data.data.test.predict[i]
+            prediction: data.data.test.predictions[i]
         })).filter(point => point.label == classIdx)
 
         if (testDataForClass.length > 0) {
@@ -130,10 +128,72 @@ function renderChart(data) {
             }
         }
     }
+    
     // console.table(datasets)
 
-    // 建立圖表
-
+    //建立圖表
+    chart = new Chart(ctx,{
+        type: 'scatter',
+        data: { datasets: datasets },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text: `KNN 分類視覺化(k=${data.k_neighbors})`,
+                    font: {
+                        size: 18,
+                        weight: 'bold'
+                    },
+                    padding: 20
+                },
+                legend: {
+                    display: true,
+                    position: 'top',
+                    labels: {
+                        usePointStyle: true,
+                        padding: 12,
+                        font: {
+                            size: 11
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: `${data.feature_names[2]}(cm)`,
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0,0,0,0.05)'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: `${data.feature_names[3]}(cm)`,
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.05)'
+                    }
+                }
+            },
+            animation: {
+                duration: 800,
+                easing: 'easeInOutQuart'
+            }
+        }
+    })
 
 }
 
