@@ -1,5 +1,5 @@
 from flask import Flask,render_template
-from knn.app import knn_bp
+from knn.app import knn_bp  # from 後面為 package 或 moudle
 from regression.app import regression_bp
 
 app = Flask(__name__)
