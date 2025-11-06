@@ -174,6 +174,11 @@ function renderChart(data) {
                         padding: 12,
                         font: {
                             size: 11
+                        },
+                        filter: function (item, chart) {
+                            //只顯示訓練資料的圖例
+                            console.table(item)
+                            return item.text.includes('訓練')
                         }
                     }
                 }, tooltip: {
