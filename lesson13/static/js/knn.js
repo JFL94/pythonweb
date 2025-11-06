@@ -152,11 +152,9 @@ function renderChart(data) {
                     // console.table(dataset)
                     const datasetType = dataset.label.includes('訓練') ? 'train' : 'test';
                     showClassificationResult(point, datasetType, index)
-
-                  
+                    //python寫法:資料if bool else資料
+                    //js寫法: ? bool :
                 }
-                //python寫法:資料if bool else資料
-                //js寫法: ? bool :
             },
             plugins: {
                 title: {
@@ -176,6 +174,18 @@ function renderChart(data) {
                         padding: 12,
                         font: {
                             size: 11
+                        }
+                    }
+                }, tooltip: {
+                    callbacks: {
+                        label: function (context) {
+                            const label = context.dataset.label || '';
+                            const x = context.parsed.x.toFixed(2)
+                            const y = context.parsed.y.toFixed(2)
+                            return `${label}:花瓣 ${x}cm x ${y}cm`
+                        },
+                        afterLabel: function (context) {
+                            return '💡 點擊查看詳細資訊';
                         }
                     }
                 }
