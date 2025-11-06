@@ -13,8 +13,24 @@ const classColors = [
 
 // 頁面載入完成後執行
 document.addEventListener('DOMContentLoaded', function () {
-    // 固定使用花瓣長度(2)和花瓣寬度(3)
+    // 程式執行點，固定使用花瓣長度(2)和花瓣寬度(3)
     loadKnnData()
+
+    //綁定K值slider事件
+    const kSlider = document.getElementById("k-slider")
+    const kValue = document.getElementById("k-value")
+
+    kSlider.addEventListener('input', function () {
+        //console.log('input觸發')
+        kValue.textContent = this.value
+    })
+
+    kSlider.addEventListener('change', function () {
+        //console.log('change觸發')
+        currentK = parseInt(this.value);
+        loadKnnData()
+    })
+
 })
 
 async function loadKnnData() {
@@ -30,6 +46,12 @@ async function loadKnnData() {
 
             // 繪制圖表
             renderChart(data)
+
+            // 更新評估指標
+            updateMetrics(data.metrics)
+
+            // 更新模型資訊
+            updataModelInfo(data.description,data.k_neighbors)
 
         } else {
             showError(data.error)
@@ -177,7 +199,6 @@ function renderChart(data) {
                         },
                         filter: function (item, chart) {
                             //只顯示訓練資料的圖例
-                            console.table(item)
                             return item.text.includes('訓練')
                         }
                     }
@@ -231,6 +252,30 @@ function renderChart(data) {
     })
 
 }
+
+//更新評估指標
+function updateMetrics(metrics) {
+    /*console.table(metrics)*/
+    const accuracy = (metrics.accuracy * 100).toFixed(1)
+    const accuracyElement = document.getElementById('accuracy')
+    accuracyElement.textContent = accuracy + '%'
+
+    if (metrics.accuracy >= 0.95) {
+        accuracyElement.style.color = '#4caf59'
+    } else if (metrics >= 0.85) {
+        accuracyElement.style.color = '#ff9800'
+    } else {
+        accuracyElement.style.color = '#f44336'
+    }
+
+}
+
+//更新模型資訊
+function updataModelInfo(description, k_neighbors) {
+    
+
+}
+
 
 // 顯示分類結果
 function showClassificationResult(dataPoint, datasetType, index) {
